@@ -19,12 +19,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mybutton.cpp \
-    mywindow.cpp
+    mywindow.cpp \
+    tower.cpp
 
 HEADERS += \
     mainwindow.h \
     mybutton.h \
-    mywindow.h
+    mywindow.h \
+    tower.h
 
 FORMS += \
     mainwindow.ui
