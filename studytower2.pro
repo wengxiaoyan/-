@@ -22,7 +22,8 @@ SOURCES += \
     myobject.cpp \
     mywindow.cpp \
     tower.cpp \
-    towerposition.cpp
+    towerposition.cpp \
+    waypoint.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -30,7 +31,8 @@ HEADERS += \
     myobject.h \
     mywindow.h \
     tower.h \
-    towerposition.h
+    towerposition.h \
+    waypoint.h
 
 FORMS += \
     mainwindow.ui

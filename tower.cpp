@@ -13,6 +13,6 @@ void Tower::draw(QPainter* painter){
     static const QPoint offsetPoint(22, 22);
     painter->translate(pos);// 这里将坐标原点移到pos
     painter->drawPixmap(-offsetPoint,pixmap);
-    painter->drawEllipse(offsetPoint, attackRange, attackRange);
+    painter->drawEllipse(offsetPoint, attackRange, attackRange);//画攻击范围
     painter->restore();
 }
