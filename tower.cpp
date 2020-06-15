@@ -4,9 +4,15 @@
 #include <QPainter>
 Tower::Tower(QPoint pos, QString pixFileName) : QObject(0),pixmap(pixFileName)
 {
-    _pos = pos;
+    this->pos = pos;
 }
 
 void Tower::draw(QPainter* painter){
-    painter->drawPixmap(_pos,pixmap);
+    painter->save();
+    painter->setPen(Qt::white);
+    painter->drawEllipse(pos, attackRange, attackRange);
+    static const QPoint offsetPoint(22, 22);
+    painter->translate(pos);// 这里将坐标原点移到pos
+    painter->drawPixmap(offsetPoint,pixmap);
+    painter->restore();
 }

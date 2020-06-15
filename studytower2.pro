@@ -19,14 +19,18 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mybutton.cpp \
+    myobject.cpp \
     mywindow.cpp \
-    tower.cpp
+    tower.cpp \
+    towerposition.cpp
 
 HEADERS += \
     mainwindow.h \
     mybutton.h \
+    myobject.h \
     mywindow.h \
-    tower.h
+    tower.h \
+    towerposition.h
 
 FORMS += \
     mainwindow.ui

@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include "tower.h"
+#include "myobject.h"
+#include "towerposition.h"
 //想要用QList<Tower*>tower_list
 #include <QList>
 
@@ -14,9 +16,16 @@ public:
     explicit MyWindow(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent*);
     void set_tower();
+    void addMyObject();
+    void updateScene();
+    void loadTowerPositions();
+    void mousePressEvent(QMouseEvent *event);
+    bool canBuyTower() const;
 private:
     QList<Tower*>tower_list;
     //我是把它当作一个Tower类的动态数组
+    QList<MyObject*> object_list;
+    QList<TowerPosition> towerposition_list;
 signals:
     void chooseBack();
 

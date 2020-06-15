@@ -11,8 +11,11 @@ public:
     Tower(QPoint pos, QString pixFileName );
     void draw(QPainter* painter);
 private:
-    QPoint _pos;
+    QPoint pos;
     QPixmap pixmap;
+    int attackRange;//攻击范围
+    int damage;//攻击力
+    int fireRate;//攻速
 signals:
 
 };
