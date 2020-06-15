@@ -27,7 +27,7 @@ MyWindow::MyWindow(QWidget *parent) : QMainWindow(parent)
     });
 
     //把建塔建和建塔连接*/
-    loadTowerPositions();//创建塔的基座？
+    loadTowerPositions();//创建塔的基座
     connect(back_btn,&MyButton::clicked,this,[=](){
         back_btn->zoomdown();
         back_btn->zoomup();
@@ -41,6 +41,7 @@ MyWindow::MyWindow(QWidget *parent) : QMainWindow(parent)
     timer->start(10);
 }
 
+//通过点击鼠标事件来判定是否建塔
 void MyWindow::mousePressEvent(QMouseEvent *event){
     QPoint pressPos = event->pos();
     auto it = towerposition_list.begin();//auto的意思是使it的变量类型与等号后面的类型相同
@@ -56,6 +57,7 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
     }
 }
 
+//判定钱够不够建塔（虽然当前版本还没实现钱的功能，但是这是为后来版本做的准备）
 bool MyWindow::canBuyTower() const
 {
     return true;
@@ -71,17 +73,16 @@ void MyWindow::paintEvent(QPaintEvent *){
         towerposition.draw(&painter);
     foreach(Tower* tower, tower_list)//遍历list，将tower_list的所有成员一次赋给tower
         tower->draw(&painter);
-    //绘制
     foreach(MyObject* object, object_list)
         object->draw(&painter);
 }
 
-void MyWindow::set_tower()
+/*void MyWindow::set_tower()
 {
     Tower* a_new_tower = new Tower(QPoint(100,70),":/4");
     tower_list.push_back(a_new_tower);
     update();//重新绘制窗口
-}
+}*/
 
 void MyWindow::addMyObject(){
     MyObject* object = new MyObject(QPoint(100,100),QPoint(400,400),":/8");
@@ -94,6 +95,7 @@ void MyWindow::updateScene(){
     update();
 }
 
+//添加塔基座的点
 void MyWindow::loadTowerPositions(){
     QPoint pos[] =
     {
