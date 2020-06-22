@@ -8,7 +8,6 @@
 #include "towerposition.h"
 #include "waypoint.h"
 #include "enermy.h"
-#include "bullet.h"
 //想要用QList<Tower*>tower_list
 
 #include <QList>
@@ -49,10 +48,6 @@ public:
 
     void removedEnemy(Enermy *enemy);
 
-    void removedBullet(Bullet *bullet);
-
-    void addBullet(Bullet *bullet);
-
     //void getHpDamage(int damage/* = 1*/);
 
 
@@ -74,8 +69,6 @@ public:
     QList<WayPoint *> waypoint_list;
 
     QList<Enermy *> enermy_list;
-
-    QList<Bullet *> bullet_list;
 
     int m_waves;
 

@@ -3,12 +3,6 @@
 #include <QPoint>
 #include <QObject>
 #include <QPixmap>
-#include "enermy.h"
-#include <QTimer>
-
-class MyWindow;
-
-class Enermy;
 
 class Tower : public QObject
 
@@ -18,19 +12,9 @@ class Tower : public QObject
 
 public:
 
-    Tower(QPoint pos, QString pixFileName, MyWindow * _game1 );
+    Tower(QPoint pos, QString pixFileName );
 
     void draw(QPainter* painter);
-
-    void targetKilled();
-
-    void attackEnermy();
-
-    void chooseEnemyForAttack(Enermy *enemy);
-
-    void shootWeapon();
-
-    void lostSightOfEnemy();
 
 private:
 
@@ -44,13 +28,6 @@ private:
 
     int fireRate;//攻速
 
-    double rotationPixmap;
-
-    Enermy * chooseEnermy;
-
-    QTimer * fireRateTimer;
-
-    MyWindow * _game2;
 
 signals:
 

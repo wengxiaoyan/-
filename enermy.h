@@ -10,8 +10,6 @@
 
 class MyWindow;
 
-class Tower;
-
 class Enermy : public QObject
 {
     Q_OBJECT
@@ -27,16 +25,6 @@ public:
     bool collisionWithCircle(QPoint point1, int radius1, QPoint point2, int radius2);
 
     void doActivate();
-
-    void getRemoved();
-
-    void getDamage(int damage);
-
-    void getAttacked(Tower *attacker);
-
-    QPoint _pos();
-
-    void gotLostSight(Tower *attacker);
 
 private:
 
@@ -57,8 +45,6 @@ private:
     WayPoint * destinationWayPoint;
 
     MyWindow * _game;
-
-    QList<Tower *> towerList;
 
 };
 

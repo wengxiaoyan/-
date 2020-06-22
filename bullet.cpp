@@ -39,7 +39,7 @@ void Bullet::move()
 
 {
 
-    // 100毫秒内击中敌人
+    // 1秒内击中敌人
 
     static const int duration = 100;
 
@@ -76,7 +76,7 @@ void Bullet::setCurrentPos(QPoint pos)
 
 {
 
-    _currentPos = pos;
+    this->_currentPos = pos;
 
 }
 
@@ -84,6 +84,6 @@ QPoint Bullet::currentPos()
 
 {
 
-    return _currentPos;
+    return this->_currentPos;
 
 }

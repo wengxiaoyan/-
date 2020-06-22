@@ -1,7 +1,5 @@
 #include "mywindow.h"
 #include "mybutton.h"
-#include "bullet.h"
-#include "tower.h"
 #include <QTimer>
 #include <QPaintEvent>
 #include <QPainter>
@@ -42,15 +40,13 @@ MyWindow::MyWindow(QWidget *parent) :
 
     //建塔按钮出现窗口
 
-    setTower->move(50,100);
+    setTower->move(100,50);
 
     //建塔按钮出现位置
 
-    connect(setTower,&MyButton::clicked,this,&MyWindow::addMyObject{
+    connect(setTower,&MyButton::clicked,this,&MyWindow::addMyObject);
 
-        MyWindow::set_tower();
 
-    });
 
     //把建塔建和建塔连接*/
 
@@ -111,7 +107,7 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
 
 
 
-            Tower *tower = new Tower(it->showPos(), ":/4", this);
+            Tower *tower = new Tower(it->showPos(), ":/4");
 
 
 
@@ -200,8 +196,6 @@ void MyWindow::addMyObject(){
     object_list.push_back(object);
 
     object->move();
-
-    update();
 
 }
 
@@ -357,20 +351,3 @@ void MyWindow::removedEnemy(Enermy *enemy)
     return true;
 
 }*/
-
-void MyWindow::removedBullet(Bullet *bullet)
-
-{
-    Q_ASSERT(bullet);
-
-    bullet_list.removeOne(bullet);
-
-    delete bullet;
-}
-
-void MyWindow::addBullet(Bullet *bullet)
-{
-    Q_ASSERT(bullet);
-
-    bullet_list.push_back(bullet);
-}
