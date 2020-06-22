@@ -1,6 +1,5 @@
 #include "enermy.h"
 
-
 Enermy::Enermy(WayPoint *startWayPoint, MyWindow *game)
 
     : QObject(0)
@@ -25,8 +24,7 @@ Enermy::Enermy(WayPoint *startWayPoint, MyWindow *game)
 
 }
 
-
-bool collisionWithCircle(QPoint point1, int radius1, QPoint point2, int radius2)
+bool Enermy::collisionWithCircle(QPoint point1, int radius1, QPoint point2, int radius2)
 
 {
 
@@ -43,7 +41,6 @@ bool collisionWithCircle(QPoint point1, int radius1, QPoint point2, int radius2)
     return false;
 
 }
-
 
 void Enermy::draw(QPainter *painter)
 
@@ -97,8 +94,6 @@ void Enermy::draw(QPainter *painter)
 
 }
 
-
-
 void Enermy::move()
 
 {
@@ -127,11 +122,11 @@ void Enermy::move()
 
         else
 
-        {
+       {
 
             // 表示进入基地
 
-            _game->getHpDamage();
+            //_game->getHpDamage();
 
             _game->removedEnemy(this);
 
@@ -167,7 +162,6 @@ void Enermy::move()
 
 }
 
-
 void Enermy::doActivate()
 
 {
@@ -175,4 +169,3 @@ void Enermy::doActivate()
     action = true;
 
 }
-

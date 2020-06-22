@@ -1,14 +1,16 @@
 #include "mywindow.h"
-
 #include "mybutton.h"
-
 #include <QTimer>
-
 #include <QPaintEvent>
-
 #include <QPainter>
 
-MyWindow::MyWindow(QWidget *parent) : QMainWindow(parent)
+MyWindow::MyWindow(QWidget *parent) :
+
+  QMainWindow(parent)
+
+  ,m_waves(0)
+
+  ,m_gameWin(false)
 
 {
 
@@ -46,21 +48,13 @@ MyWindow::MyWindow(QWidget *parent) : QMainWindow(parent)
 
         MyWindow::set_tower();
 
-
-
     });
 
     //把建塔建和建塔连接*/
 
-
-
     loadTowerPositions();//创建塔的基座
 
-
-
     addWayPoints();//创建节点
-
-
 
     connect(back_btn,&MyButton::clicked,this,[=](){
 
@@ -75,7 +69,6 @@ MyWindow::MyWindow(QWidget *parent) : QMainWindow(parent)
         });
 
     });
-
     //连接返回键与信号发射功能
 
     QTimer* timer = new QTimer(this);
@@ -86,39 +79,61 @@ MyWindow::MyWindow(QWidget *parent) : QMainWindow(parent)
 
 }
 
-
-
 //通过点击鼠标事件来判定是否建塔
 
 void MyWindow::mousePressEvent(QMouseEvent *event){
 
+
+
     QPoint pressPos = event->pos();
+
+
 
     auto it = towerposition_list.begin();//auto的意思是使it的变量类型与等号后面的类型相同
 
+
+
     for (;it!=towerposition_list.end();++it) {
+
+
 
         if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower())
 
+
+
         {
+
+
 
             it->setHasTower();
 
+
+
             Tower *tower = new Tower(it->showPos(), ":/4");
+
+
 
             tower_list.push_back(tower);
 
+
+
             update();
+
+
 
             break;
 
+
+
         }
+
+
 
     }
 
+
+
 }
-
-
 
 //判定钱够不够建塔（虽然当前版本还没实现钱的功能，但是这是为后来版本做的准备）
 
@@ -129,8 +144,6 @@ bool MyWindow::canBuyTower() const
     return true;
 
 }
-
-
 
 void MyWindow::paintEvent(QPaintEvent *){
 
@@ -160,9 +173,11 @@ void MyWindow::paintEvent(QPaintEvent *){
 
         waypoint->draw(&painter);
 
+    foreach (Enermy *enemy, enermy_list)
+
+            enemy->move();
+
 }
-
-
 
 /*void MyWindow::set_tower()
 
@@ -176,8 +191,6 @@ void MyWindow::paintEvent(QPaintEvent *){
 
 }*/
 
-
-
 void MyWindow::addMyObject(){
 
     MyObject* object = new MyObject(QPoint(100,100),QPoint(400,400),":/8");
@@ -190,16 +203,15 @@ void MyWindow::addMyObject(){
 
 }
 
-
-
 void MyWindow::updateScene(){
+
+    foreach (Enermy *enemy, enermy_list)
+
+            enemy->move();
 
     update();
 
 }
-
-
-
 //添加塔基座的点
 
 void MyWindow::loadTowerPositions(){
@@ -242,118 +254,53 @@ void MyWindow::loadTowerPositions(){
 
 }
 
-
-
-
-
 void MyWindow::addWayPoints()
 
-
-
 {
-
-
 
     WayPoint *wayPoint1 = new WayPoint(QPoint(600, 540));
 
-
-
     waypoint_list.push_back(wayPoint1);
-
-
-
-
-
-
 
     WayPoint *wayPoint2 = new WayPoint(QPoint(55, 540));
 
-
-
     waypoint_list.push_back(wayPoint2);
-
-
 
     wayPoint2->setNextWayPoint(wayPoint1);
 
-
-
-
-
-
-
     WayPoint *wayPoint3 = new WayPoint(QPoint(55, 365));
-
-
 
     waypoint_list.push_back(wayPoint3);
 
-
-
     wayPoint3->setNextWayPoint(wayPoint2);
-
-
-
-
-
-
 
     WayPoint *wayPoint4 = new WayPoint(QPoint(737, 365));
 
-
-
     waypoint_list.push_back(wayPoint4);
-
-
 
     wayPoint4->setNextWayPoint(wayPoint3);
 
-
-
-
-
-
-
     WayPoint *wayPoint5 = new WayPoint(QPoint(737, 190));
-
-
 
     waypoint_list.push_back(wayPoint5);
 
-
-
     wayPoint5->setNextWayPoint(wayPoint4);
-
-
-
-
-
-
 
     WayPoint *wayPoint6 = new WayPoint(QPoint(55, 190));
 
-
-
     waypoint_list.push_back(wayPoint6);
-
-
 
     wayPoint6->setNextWayPoint(wayPoint5);
 
-
-
 }
 
+//void MyWindow::getHpDamage(int damage/* = 1*/)
 
-
-
-void MyWindow::getHpDamage(int damage/* = 1*/)
-
-{
+//{
 
     // 暂时空实现，以后这里进行基地费血行为
 
-}
+//    }
 
 void MyWindow::removedEnemy(Enermy *enemy)
 
@@ -383,7 +330,7 @@ void MyWindow::removedEnemy(Enermy *enemy)
 
             m_gameWin = true;
 
-            // 游戏胜利转到游戏胜利场景
+            // 游戏胜利转到游戏胜利场
 
             // 这里暂时以打印处理
 
@@ -392,9 +339,6 @@ void MyWindow::removedEnemy(Enermy *enemy)
     }
 
 }
-
-
-
 
 bool MyWindow::loadWave()
 
@@ -408,13 +352,13 @@ bool MyWindow::loadWave()
 
     int enemyStartInterval[] = { 100, 500, 600, 1000, 3000, 6000 };
 
-    QPixmap sprite = QPixmap(":/2");
+    QPixmap sprite = QPixmap(":/8");
 
     for (int i = 0; i < 6; ++i)
 
     {
 
-        Enermy *enemy = new Enermy(startWayPoint,);
+        Enermy *enemy = new Enermy(startWayPoint, this);
 
         enermy_list.push_back(enemy);
 
@@ -425,3 +369,4 @@ bool MyWindow::loadWave()
     return true;
 
 }
+
