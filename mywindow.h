@@ -138,15 +138,15 @@ public:
 
 
 
-    bool loadWave();
+    //bool loadWave();
 
 
 
-    void removedEnemy(Enermy *enemy);
+    //void removedEnemy(Enermy *enemy);
 
 
 
-    void getHpDamage(int damage/* = 1*/);
+    //void getHpDamage(int damage/* = 1*/);
 
 
 

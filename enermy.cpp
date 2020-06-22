@@ -128,7 +128,7 @@ void Enermy::move()
 
             //_game->getHpDamage();
 
-            _game->removedEnemy(this);
+            //_game->removedEnemy(this);
 
             return;
 

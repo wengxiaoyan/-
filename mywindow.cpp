@@ -77,6 +77,14 @@ MyWindow::MyWindow(QWidget *parent) :
 
     timer->start(10);
 
+    WayPoint *startWayPoint = waypoint_list.back(); // 这里是个逆序的，尾部才是其实节点0
+
+    Enermy *enemy = new Enermy(startWayPoint, this);
+
+    enemy->doActivate();
+
+    enermy_list.push_back(enemy);
+
 }
 
 //通过点击鼠标事件来判定是否建塔
@@ -258,7 +266,7 @@ void MyWindow::addWayPoints()
 
 {
 
-    WayPoint *wayPoint1 = new WayPoint(QPoint(600, 540));
+    WayPoint *wayPoint1 = new WayPoint(QPoint(700, 540));
 
     waypoint_list.push_back(wayPoint1);
 
@@ -302,7 +310,7 @@ void MyWindow::addWayPoints()
 
 //    }
 
-void MyWindow::removedEnemy(Enermy *enemy)
+/*void MyWindow::removedEnemy(Enermy *enemy)
 
 {
 
@@ -368,5 +376,5 @@ bool MyWindow::loadWave()
 
     return true;
 
-}
+}*/
 
