@@ -1,5 +1,7 @@
 #include "mywindow.h"
 #include "mybutton.h"
+#include "bullet.h"
+#include "tower.h"
 #include <QTimer>
 #include <QPaintEvent>
 #include <QPainter>
@@ -109,7 +111,7 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
 
 
 
-            Tower *tower = new Tower(it->showPos(), ":/4");
+            Tower *tower = new Tower(it->showPos(), ":/4", this);
 
 
 
@@ -302,7 +304,7 @@ void MyWindow::addWayPoints()
 
 //    }
 
-/*void MyWindow::removedEnemy(Enermy *enemy)
+void MyWindow::removedEnemy(Enermy *enemy)
 
 {
 
@@ -312,35 +314,21 @@ void MyWindow::addWayPoints()
 
     delete enemy;
 
-    if (enermy_list.empty())
+    /*if (enermy_list.isEmpty())
 
     {
 
-        ++m_waves; // 当前波数加1
-
-        // 继续读取下一波
-
-        if (!loadWave())
-
-        {
-
-            // 当没有下一波时，这里表示游戏胜利
-
-            // 设置游戏胜利标志为true
-
-            m_gameWin = true;
+        m_gameWin = true;
 
             // 游戏胜利转到游戏胜利场景
 
             // 这里暂时以打印处理
 
-        }
-
-    }
+     }*/
 
 }
 
-bool MyWindow::loadWave()
+/*bool MyWindow::loadWave()
 
 {
 
@@ -370,3 +358,19 @@ bool MyWindow::loadWave()
 
 }*/
 
+void MyWindow::removedBullet(Bullet *bullet)
+
+{
+    Q_ASSERT(bullet);
+
+    bullet_list.removeOne(bullet);
+
+    delete bullet;
+}
+
+void MyWindow::addBullet(Bullet *bullet)
+{
+    Q_ASSERT(bullet);
+
+    bullet_list.push_back(bullet);
+}

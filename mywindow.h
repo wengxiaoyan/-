@@ -8,11 +8,16 @@
 #include "towerposition.h"
 #include "waypoint.h"
 #include "enermy.h"
+#include "bullet.h"
 //想要用QList<Tower*>tower_list
 
 #include <QList>
 
 class Enermy;
+
+class Bullet;
+
+class Tower;
 
 class MyWindow : public QMainWindow
 
@@ -42,9 +47,21 @@ public:
 
     //bool loadWave();
 
-    //void removedEnemy(Enermy *enemy);
+    void removedEnemy(Enermy *enemy);
+
+    void removedBullet(Bullet *bullet);
+
+    void addBullet(Bullet *bullet);
 
     //void getHpDamage(int damage/* = 1*/);
+
+
+
+
+
+
+
+
 
     QList<Tower*>tower_list;
 
@@ -57,6 +74,8 @@ public:
     QList<WayPoint *> waypoint_list;
 
     QList<Enermy *> enermy_list;
+
+    QList<Bullet *> bullet_list;
 
     int m_waves;
 

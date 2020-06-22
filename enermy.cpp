@@ -128,7 +128,7 @@ void Enermy::move()
 
             //_game->getHpDamage();
 
-            //_game->removedEnemy(this);
+            _game->removedEnemy(this);
 
             return;
 
@@ -167,5 +167,65 @@ void Enermy::doActivate()
 {
 
     action = true;
+
+}
+
+
+void Enermy::getRemoved()
+
+{
+
+    if (towerList.isEmpty())
+
+        return;
+
+    foreach (Tower *attacker, towerList)
+
+        attacker->targetKilled();
+
+    // 通知game,此敌人已经阵亡
+
+    _game->removedEnemy(this);
+
+}
+
+
+
+void Enermy::getDamage(int damage)
+
+{
+
+    currentHp -= damage;
+
+    // 阵亡,需要移除
+
+    if (currentHp <= 0)
+
+        getRemoved();
+
+}
+
+void Enermy::getAttacked(Tower *attacker)
+
+{
+
+    towerList.push_back(attacker);
+
+}
+
+QPoint Enermy::_pos()
+
+{
+
+    return pos;
+
+}
+
+// 表明敌人已经逃离了攻击范围
+void Enermy::gotLostSight(Tower *attacker)
+
+{
+
+    towerList.removeOne(attacker);
 
 }
