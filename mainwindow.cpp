@@ -1,20 +1,14 @@
 #include <QPixmap>
-
 #include <QPaintEvent>
-
 #include <QPushButton>
-
 #include <QDebug>
-
 #include <QTimer>
-
 #include "mainwindow.h"
-
 #include "ui_mainwindow.h"
-
 #include "mybutton.h"
-
 #include "mywindow.h"
+#include "enermy.h"
+#include "waypoint.h"
 
 
 
@@ -59,6 +53,28 @@ MainWindow::MainWindow(QWidget *parent)
             scene->show();
 
         });
+
+        //接下来开始载入敌人
+
+        int enemyStartInterval[] = { 1400, 3400, 5400};
+
+        WayPoint *startWayPoint = scene->waypoint_list.back(); // 这里是个逆序的，尾部才是其实节点0
+
+        for (int i = 0; i < 3; ++i){
+
+            QTimer::singleShot(enemyStartInterval[i],this,[=](){
+
+                for (int i = 0; i < 3; ++i) {
+
+                    Enermy *enemy = new Enermy(startWayPoint, scene);
+
+                    enemy->doActivate();
+
+                    scene->enermy_list.push_back(enemy);
+                }
+
+            });
+        }
 
     });
 
