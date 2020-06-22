@@ -150,7 +150,7 @@ void Enermy::move()
 
     QVector2D normalized(targetPoint - pos);
 
-    normalized.normalize();
+    normalized.normalize();//单位向量
 
     pos = pos + normalized.toPoint() * movementSpeed;
 

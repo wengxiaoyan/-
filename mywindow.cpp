@@ -175,7 +175,7 @@ void MyWindow::paintEvent(QPaintEvent *){
 
     foreach (Enermy *enemy, enermy_list)
 
-            enemy->move();
+        enemy->draw(&painter);
 
 }
 
@@ -330,7 +330,7 @@ void MyWindow::removedEnemy(Enermy *enemy)
 
             m_gameWin = true;
 
-            // 游戏胜利转到游戏胜利场
+            // 游戏胜利转到游戏胜利场景
 
             // 这里暂时以打印处理
 

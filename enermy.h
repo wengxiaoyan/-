@@ -1,29 +1,17 @@
 #ifndef ENERMY_H
-
 #define ENERMY_H
-
 #include <QPoint>
-
 #include <QPixmap>
-
 #include "waypoint.h"
-
 #include "mywindow.h"
-
 #include <QtMath>
-
 #include <QVector2D>
-
 #include <QObject>
-
 
 class MyWindow;
 
-
 class Enermy : public QObject
-
 {
-
     Q_OBJECT
 
 public:
