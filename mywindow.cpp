@@ -34,19 +34,12 @@ MyWindow::MyWindow(QWidget *parent) :
     //返回按钮位置
 
     /*MyButton* setBullet = new MyButton(":/7");
-
     //建塔按钮
-
     setBullet->setParent(this);
-
     //建塔按钮出现窗口
-
     setBullet->move(100,50);
-
     //建塔按钮出现位置
-
     connect(setBullet,&MyButton::clicked,this,&MyWindow::addMyBullet);
-
     //把建塔建和建塔连接*/
 
 
@@ -85,10 +78,6 @@ void MyWindow::addMyBullet(Tower * tower, Enermy * enermy){
 
     object->move();
 
-    if(enermy->collisionWithCircle(object->getCurrentPos(), 50, enermy->getpos(), 50))
-
-        this->removedBullet(object);
-
 }
 
 
@@ -111,18 +100,6 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
             Tower *tower = new Tower(it->showPos(), ":/4", this);
 
             tower_list.push_back(tower);
-
-
-            //以下保证塔能连续发射子弹，但是伤害系统还没做，范围判定也还没做
-            QTimer* timer = new QTimer(this);
-
-            connect(timer,&QTimer::timeout,this,[=](){
-
-                addMyBullet(tower, this->enermy_list[0]);
-
-            });
-
-            timer->start(1000);
 
             update();
 
@@ -178,15 +155,10 @@ void MyWindow::paintEvent(QPaintEvent *){
 }
 
 /*void MyWindow::set_tower()
-
 {
-
     Tower* a_new_tower = new Tower(QPoint(100,70),":/4");
-
     tower_list.push_back(a_new_tower);
-
     update();//重新绘制窗口
-
 }*/
 
 void MyWindow::updateScene(){
@@ -299,47 +271,28 @@ void MyWindow::removedEnemy(Enermy *enemy)
     delete enemy;
 
     /*if (enermy_list.isEmpty())
-
     {
-
         m_gameWin = true;
-
             // 游戏胜利转到游戏胜利场景
-
             // 这里暂时以打印处理
-
      }*/
 
 }
 
 /*bool MyWindow::loadWave()
-
 {
-
     if (m_waves >= 6)
-
         return false;
-
     WayPoint *startWayPoint = waypoint_list.back(); // 这里是个逆序的，尾部才是其实节点
-
     int enemyStartInterval[] = { 100, 500, 600, 1000, 3000, 6000 };
-
     QPixmap sprite = QPixmap(":/8");
-
     for (int i = 0; i < 6; ++i)
-
     {
-
         Enermy *enemy = new Enermy(startWayPoint, this);
-
         enermy_list.push_back(enemy);
-
         QTimer::singleShot(enemyStartInterval[i], enemy, SLOT(doActivate()));
-
     }
-
     return true;
-
 }*/
 
 void MyWindow::removedBullet(MyObject * bullet)

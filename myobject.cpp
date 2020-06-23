@@ -26,13 +26,13 @@ void MyObject::move(){
 
     QPropertyAnimation* animation = new QPropertyAnimation(this, "currentPos");
 
-    animation->setDuration(120);
+    animation->setDuration(200);
 
     animation->setStartValue(startPos);
 
     animation->setEndValue(targetPos);
 
-    connect(animation, SIGNAL(finished()), this, SLOT(hitTarget()));
+    connect(animation, SIGNAL(finished()), this, SLOT(hitTarget()));//保证子弹打中目标后能够消失
 
     animation->start();
 

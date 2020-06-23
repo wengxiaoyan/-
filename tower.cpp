@@ -1,6 +1,7 @@
 #include "tower.h"
 #include "mywindow.h"
 #include "myobject.h"
+#include "enermy.h"
 #include <QPoint>
 #include <QObject>
 #include <QPainter>
@@ -11,6 +12,12 @@ Tower::Tower(QPoint pos, QString pixFileName, MyWindow * game ) : QObject(0),pix
     this->pos = pos;
 
     tower_window = game;
+
+    checkEnermyTimer = new QTimer(this);
+
+    connect(checkEnermyTimer, &QTimer::timeout, this, &Tower::attackEnermy);
+
+    checkEnermyTimer->start(500);
 
 }
 
@@ -27,3 +34,29 @@ void Tower::draw(QPainter* painter){
 QPoint Tower::getpos(){
     return pos;
 }
+
+bool Tower::checkEnermy(){
+
+    foreach(Enermy * enemy, tower_window->enermy_list){
+
+        if(enemy->collisionWithCircle(enemy->getpos(), 1, this->getpos(), attackRange)){
+
+            target = enemy;
+
+            return true;
+        }
+    }
+    return false;
+}
+
+void Tower::attackEnermy(){
+
+    if(checkEnermy())
+
+        tower_window->addMyBullet(this, target);
+
+    else
+
+        return;
+}
+

@@ -4,8 +4,11 @@
 #include <QObject>
 #include <QList>
 #include <QPixmap>
+#include <QTimer>
 #include "mywindow.h"
 #include "myobject.h"
+
+class Enermy;
 
 class MyObject;
 
@@ -25,6 +28,10 @@ public:
 
     QPoint getpos();
 
+    bool checkEnermy();
+
+    void attackEnermy();
+
 private:
 
     QPoint pos;
@@ -40,6 +47,10 @@ private:
     MyWindow * tower_window;
 
     QList<MyObject *> tower_bullet;
+
+    QTimer * checkEnermyTimer;
+
+    Enermy * target;
 
 
 signals:
