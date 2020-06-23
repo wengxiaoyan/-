@@ -8,6 +8,10 @@
 
 class MyWindow;
 
+class Enermy;
+
+class Tower;
+
 class MyObject : public QObject
 
 {
@@ -18,7 +22,7 @@ class MyObject : public QObject
 
 public:
 
-    MyObject(QPoint startPos, QPoint targetPos, QString fileName, MyWindow * window);
+    MyObject(QPoint startPos, QPoint targetPos, QString fileName, MyWindow * window, Enermy * target, Tower * tower);
 
     void draw(QPainter* painter);
 
@@ -42,6 +46,10 @@ private:
     QPixmap pixmap;
 
     MyWindow * bullet_window;
+
+    Enermy * target;
+
+    Tower * source;
     
 
 signals:

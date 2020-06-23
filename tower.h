@@ -32,6 +32,8 @@ public:
 
     void attackEnermy();
 
+    int showDamage();
+
 private:
 
     QPoint pos;
@@ -40,7 +42,7 @@ private:
 
     int attackRange = 130;//攻击范围
 
-    int damage;//攻击力
+    int damage = 20;//攻击力
 
     int fireRate;//攻速
 

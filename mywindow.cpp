@@ -72,7 +72,7 @@ MyWindow::MyWindow(QWidget *parent) :
 
 void MyWindow::addMyBullet(Tower * tower, Enermy * enermy){
 
-    MyObject* object = new MyObject(tower->getpos(),enermy->getpos(),":/5", this);
+    MyObject* object = new MyObject(tower->getpos(),enermy->getpos(),":/5", this, enermy, tower);
 
     object_list.push_back(object);
 

@@ -28,6 +28,10 @@ public:
 
     QPoint getpos();
 
+    int showCurrentHp();
+
+    void setCurrentHp(int current_hp);
+
 private:
 
     int maxHp;

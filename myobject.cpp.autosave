@@ -60,6 +60,9 @@ void MyObject::setCurrentPos(QPoint pos){
 
 void MyObject::hitTarget()
 {
+    /*if (m_game->enemyList().indexOf(m_target) != -1)
+		m_target->getDamage(m_damage);*/
+    
     bullet_window->removedBullet(this);
 
     target->setCurrentHp(target->showCurrentHp() - source->showDamage());

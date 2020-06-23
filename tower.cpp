@@ -60,3 +60,6 @@ void Tower::attackEnermy(){
         return;
 }
 
+int Tower::showDamage(){
+    return damage;
+}
