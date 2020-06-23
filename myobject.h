@@ -6,6 +6,8 @@
 #include <QPixmap>
 #include <QPainter>
 
+class MyWindow;
+
 class MyObject : public QObject
 
 {
@@ -16,7 +18,7 @@ class MyObject : public QObject
 
 public:
 
-    MyObject(QPoint startPos, QPoint targetPos, QString fileName);
+    MyObject(QPoint startPos, QPoint targetPos, QString fileName, MyWindow * window);
 
     void draw(QPainter* painter);
 
@@ -25,6 +27,9 @@ public:
     QPoint getCurrentPos();
 
     void setCurrentPos(QPoint pos);
+
+private slots:
+    void hitTarget();
 
 private:
 
@@ -35,6 +40,8 @@ private:
     QPoint currentPos;
 
     QPixmap pixmap;
+
+    MyWindow * bullet_window;
     
 
 signals:

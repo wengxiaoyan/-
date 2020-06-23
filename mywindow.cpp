@@ -79,11 +79,15 @@ MyWindow::MyWindow(QWidget *parent) :
 
 void MyWindow::addMyBullet(Tower * tower, Enermy * enermy){
 
-    MyObject* object = new MyObject(tower->getpos(),enermy->getpos(),":/5");
+    MyObject* object = new MyObject(tower->getpos(),enermy->getpos(),":/5", this);
 
     object_list.push_back(object);
 
     object->move();
+
+    if(enermy->collisionWithCircle(object->getCurrentPos(), 50, enermy->getpos(), 50))
+
+        this->removedBullet(object);
 
 }
 

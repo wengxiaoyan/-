@@ -1,7 +1,8 @@
 #include "myobject.h"
+#include "mywindow.h"
 #include <QPropertyAnimation>
 
-MyObject::MyObject(QPoint startPos, QPoint targetPos, QString fileName) : QObject(0),pixmap((fileName))
+MyObject::MyObject(QPoint startPos, QPoint targetPos, QString fileName, MyWindow * window) : QObject(0),pixmap((fileName))
 
 {
 
@@ -10,6 +11,8 @@ MyObject::MyObject(QPoint startPos, QPoint targetPos, QString fileName) : QObjec
     this->startPos = startPos;
 
     this->targetPos = targetPos;
+
+    this->bullet_window = window;
 
 }
 
@@ -23,11 +26,13 @@ void MyObject::move(){
 
     QPropertyAnimation* animation = new QPropertyAnimation(this, "currentPos");
 
-    animation->setDuration(60);
+    animation->setDuration(120);
 
     animation->setStartValue(startPos);
 
     animation->setEndValue(targetPos);
+
+    connect(animation, SIGNAL(finished()), this, SLOT(hitTarget()));
 
     animation->start();
 
@@ -43,4 +48,9 @@ void MyObject::setCurrentPos(QPoint pos){
 
     this->currentPos = pos;
 
+}
+
+void MyObject::hitTarget()
+{
+    bullet_window->removedBullet(this);
 }
