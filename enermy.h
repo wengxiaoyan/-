@@ -26,6 +26,8 @@ public:
 
     void doActivate();
 
+    QPoint getpos();
+
 private:
 
     int maxHp;

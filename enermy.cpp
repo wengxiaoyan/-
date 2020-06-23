@@ -170,3 +170,8 @@ void Enermy::doActivate()
 
 }
 
+QPoint Enermy::getpos(){
+
+    return pos;
+
+}

@@ -44,7 +44,7 @@ MyWindow::MyWindow(QWidget *parent) :
 
     //建塔按钮出现位置
 
-    connect(setBullet,&MyButton::clicked,this,&MyWindow::addMyObject);
+    connect(setBullet,&MyButton::clicked,this,&MyWindow::addMyBullet);
 
 
 
@@ -107,7 +107,7 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
 
 
 
-            Tower *tower = new Tower(it->showPos(), ":/4");
+            Tower *tower = new Tower(it->showPos(), ":/4", this);
 
 
 
@@ -189,7 +189,7 @@ void MyWindow::paintEvent(QPaintEvent *){
 
 }*/
 
-void MyWindow::addMyObject(){
+void MyWindow::addMyBullet(){
 
     MyObject* object = new MyObject(QPoint(100,100),this->enermy_list[0]->getpos(),":/5");
 
