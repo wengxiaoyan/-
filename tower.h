@@ -2,7 +2,14 @@
 #define TOWER_H
 #include <QPoint>
 #include <QObject>
+#include <QList>
 #include <QPixmap>
+#include "mywindow.h"
+#include "myobject.h"
+
+class MyObject;
+
+class MyWindow;
 
 class Tower : public QObject
 
@@ -12,9 +19,11 @@ class Tower : public QObject
 
 public:
 
-    Tower(QPoint pos, QString pixFileName );
+    Tower(QPoint pos, QString pixFileName, MyWindow * game );
 
     void draw(QPainter* painter);
+
+    QPoint getpos();
 
 private:
 
@@ -27,6 +36,10 @@ private:
     int damage;//攻击力
 
     int fireRate;//攻速
+
+    MyWindow * tower_window;
+
+    QList<MyObject *> tower_bullet;
 
 
 signals:

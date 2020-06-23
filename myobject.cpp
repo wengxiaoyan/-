@@ -23,7 +23,7 @@ void MyObject::move(){
 
     QPropertyAnimation* animation = new QPropertyAnimation(this, "currentPos");
 
-    animation->setDuration(100);
+    animation->setDuration(60);
 
     animation->setStartValue(startPos);
 

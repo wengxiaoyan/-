@@ -32,7 +32,7 @@ public:
 
     //void set_tower();
 
-    void addMyObject();
+    void addMyBullet(Tower * tower, Enermy * enermy);
 
     void updateScene();
 
@@ -47,6 +47,8 @@ public:
     //bool loadWave();
 
     void removedEnemy(Enermy *enemy);
+
+    void removedBullet(MyObject * bullet);
 
     //void getHpDamage(int damage/* = 1*/);
 

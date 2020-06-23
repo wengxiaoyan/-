@@ -30,9 +30,10 @@ MyWindow::MyWindow(QWidget *parent) :
 
     back_btn->move(0,0);
 
+
     //返回按钮位置
 
-    MyButton* setBullet = new MyButton(":/7");
+    /*MyButton* setBullet = new MyButton(":/7");
 
     //建塔按钮
 
@@ -44,11 +45,10 @@ MyWindow::MyWindow(QWidget *parent) :
 
     //建塔按钮出现位置
 
-    connect(setBullet,&MyButton::clicked,this,&MyWindow::addMyObject);
+    connect(setBullet,&MyButton::clicked,this,&MyWindow::addMyBullet);
 
+    //把建塔建和建塔连接*/
 
-
-    //把建塔建和建塔连接
 
     loadTowerPositions();//创建塔的基座
 
@@ -77,61 +77,57 @@ MyWindow::MyWindow(QWidget *parent) :
 
 }
 
-//通过点击鼠标事件来判定是否建塔
+void MyWindow::addMyBullet(Tower * tower, Enermy * enermy){
+
+    MyObject* object = new MyObject(tower->getpos(),enermy->getpos(),":/5");
+
+    object_list.push_back(object);
+
+    object->move();
+
+}
+
+
+
+//通过点击鼠标事件来判定是否建塔,并且在完成建塔操作后发射子弹
 
 void MyWindow::mousePressEvent(QMouseEvent *event){
 
-
-
     QPoint pressPos = event->pos();
-
-
 
     auto it = towerposition_list.begin();//auto的意思是使it的变量类型与等号后面的类型相同
 
-
-
     for (;it!=towerposition_list.end();++it) {
-
-
 
         if (canBuyTower() && it->containPoint(pressPos) && !it->hasTower())
 
-
-
         {
-
-
-
             it->setHasTower();
 
-
-
-            Tower *tower = new Tower(it->showPos(), ":/4");
-
-
+            Tower *tower = new Tower(it->showPos(), ":/4", this);
 
             tower_list.push_back(tower);
 
 
+            //以下保证塔能连续发射子弹，但是伤害系统还没做，范围判定也还没做
+            QTimer* timer = new QTimer(this);
+
+            connect(timer,&QTimer::timeout,this,[=](){
+
+                addMyBullet(tower, this->enermy_list[0]);
+
+            });
+
+            timer->start(1000);
 
             update();
 
-
-
             break;
-
-
-
         }
-
-
-
     }
-
-
-
 }
+
+
 
 //判定钱够不够建塔（虽然当前版本还没实现钱的功能，但是这是为后来版本做的准备）
 
@@ -188,16 +184,6 @@ void MyWindow::paintEvent(QPaintEvent *){
     update();//重新绘制窗口
 
 }*/
-
-void MyWindow::addMyObject(){
-
-    MyObject* object = new MyObject(QPoint(100,100),this->enermy_list[0]->getpos(),":/5");
-
-    object_list.push_back(object);
-
-    object->move();
-
-}
 
 void MyWindow::updateScene(){
 
@@ -351,3 +337,15 @@ void MyWindow::removedEnemy(Enermy *enemy)
     return true;
 
 }*/
+
+void MyWindow::removedBullet(MyObject * bullet)
+
+{
+
+    Q_ASSERT(bullet);
+
+    object_list.removeOne(bullet);
+
+    delete bullet;
+
+}
