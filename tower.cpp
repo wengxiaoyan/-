@@ -4,6 +4,12 @@
 #include "enermy.h"
 #include <QPoint>
 #include <QObject>
+#include "tower.h"
+#include "mywindow.h"
+#include "myobject.h"
+#include "enermy.h"
+#include <QPoint>
+#include <QObject>
 #include <QPainter>
 
 Tower::Tower(QPoint pos, QString pixFileName, MyWindow * game ) : QObject(0),pixmap(pixFileName)

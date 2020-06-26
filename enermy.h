@@ -30,7 +30,7 @@ public:
 
     int showCurrentHp();
 
-    void setCurrentHp(int current_hp);
+    void getdamaged();
 
 private:
 

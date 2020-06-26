@@ -60,11 +60,11 @@ MainWindow::MainWindow(QWidget *parent)
 
         WayPoint *startWayPoint = scene->waypoint_list.back(); // 这里是个逆序的，尾部才是其实节点0
 
-        for (int i = 0; i < 3; ++i){
+        for (int i = 0; i < 3; i++){
 
             QTimer::singleShot(enemyStartInterval[i],this,[=](){
 
-                for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 1; j++) {
 
                     Enermy *enemy = new Enermy(startWayPoint, scene);
 

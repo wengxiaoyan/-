@@ -102,13 +102,6 @@ void Enermy::move()//移动的同时顺便检查一下血量
 
         return;
 
-    if(currentHp<=0){
-
-        _game->removedEnemy(this);
-
-        return;
-    }
-
     if (collisionWithCircle(pos, 1, destinationWayPoint->pos(), 1))
 
     {
@@ -187,6 +180,13 @@ int Enermy::showCurrentHp(){
     return currentHp;
 }
 
-void Enermy::setCurrentHp(int current_hp){
-    currentHp = current_hp;
+void Enermy::getdamaged(){
+    currentHp -= 40;
+
+    if(currentHp<=0){
+
+        _game->removedEnemy(this);
+
+        return;
+    }
 }

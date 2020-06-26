@@ -60,12 +60,6 @@ void MyObject::setCurrentPos(QPoint pos){
 
 void MyObject::hitTarget()
 {
-    if(target == NULL)
-        bullet_window->removedBullet(this);
-    else{
-
+    target->getdamaged();
     bullet_window->removedBullet(this);
-
-    target->setCurrentHp(target->showCurrentHp() - source->showDamage());
-    }
 }
