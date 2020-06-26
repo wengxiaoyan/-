@@ -17,7 +17,7 @@ Tower::Tower(QPoint pos, QString pixFileName, MyWindow * game ) : QObject(0),pix
 
     connect(checkEnermyTimer, &QTimer::timeout, this, &Tower::attackEnermy);
 
-    checkEnermyTimer->start(500);
+    checkEnermyTimer->start(1000);
 
 }
 

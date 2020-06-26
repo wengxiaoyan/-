@@ -70,6 +70,12 @@ MyWindow::MyWindow(QWidget *parent) :
 
 }
 
+
+
+
+
+
+
 void MyWindow::addMyBullet(Tower * tower, Enermy * enermy){
 
     MyObject* object = new MyObject(tower->getpos(),enermy->getpos(),":/5", this, enermy, tower);
@@ -79,6 +85,12 @@ void MyWindow::addMyBullet(Tower * tower, Enermy * enermy){
     object->move();
 
 }
+
+
+
+
+
+
 
 
 
@@ -110,6 +122,16 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
 
 
 
+
+
+
+
+
+
+
+
+
+
 //判定钱够不够建塔（虽然当前版本还没实现钱的功能，但是这是为后来版本做的准备）
 
 bool MyWindow::canBuyTower() const
@@ -119,6 +141,16 @@ bool MyWindow::canBuyTower() const
     return true;
 
 }
+
+
+
+
+
+
+
+
+
+
 
 void MyWindow::paintEvent(QPaintEvent *){
 
@@ -154,12 +186,32 @@ void MyWindow::paintEvent(QPaintEvent *){
 
 }
 
+
+
+
+
+
+
+
+
+
+
 /*void MyWindow::set_tower()
 {
     Tower* a_new_tower = new Tower(QPoint(100,70),":/4");
     tower_list.push_back(a_new_tower);
     update();//重新绘制窗口
 }*/
+
+
+
+
+
+
+
+
+
+
 
 void MyWindow::updateScene(){
 
@@ -171,6 +223,17 @@ void MyWindow::updateScene(){
 
 }
 //添加塔基座的点
+
+
+
+
+
+
+
+
+
+
+
 
 void MyWindow::loadTowerPositions(){
 
@@ -211,6 +274,17 @@ void MyWindow::loadTowerPositions(){
         towerposition_list.push_back(pos[i]);
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 void MyWindow::addWayPoints()
 
@@ -260,6 +334,16 @@ void MyWindow::addWayPoints()
 
 //    }
 
+
+
+
+
+
+
+
+
+
+
 void MyWindow::removedEnemy(Enermy *enemy)
 
 {
@@ -294,6 +378,13 @@ void MyWindow::removedEnemy(Enermy *enemy)
     }
     return true;
 }*/
+
+
+
+
+
+
+
 
 void MyWindow::removedBullet(MyObject * bullet)
 
