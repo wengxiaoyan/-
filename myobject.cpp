@@ -60,6 +60,7 @@ void MyObject::setCurrentPos(QPoint pos){
 
 void MyObject::hitTarget()
 {
-    target->getdamaged();
+    target->getdamaged(source);
+
     bullet_window->removedBullet(this);
 }

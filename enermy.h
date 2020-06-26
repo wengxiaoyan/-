@@ -30,7 +30,11 @@ public:
 
     int showCurrentHp();
 
-    void getdamaged();
+    void getdamaged(Tower * tower);
+
+    int enermydamage;
+
+    int enermycost;
 
 private:
 

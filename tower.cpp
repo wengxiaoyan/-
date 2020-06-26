@@ -25,6 +25,8 @@ Tower::Tower(QPoint pos, QString pixFileName, MyWindow * game ) : QObject(0),pix
 
     checkEnermyTimer->start(1000);
 
+    towercost = 150;
+
 }
 
 void Tower::draw(QPainter* painter){

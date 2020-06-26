@@ -50,7 +50,7 @@ public:
 
     void removedBullet(MyObject * bullet);
 
-    //void getHpDamage(int damage/* = 1*/);
+    void getHpDamage(Enermy * enermy);
 
 
 
@@ -74,7 +74,13 @@ public:
 
     int m_waves;
 
-    bool m_gameWin;
+    bool gameWin;
+
+    bool gameEnd;
+
+    int Hp;
+
+    int money;
 
 signals:
 

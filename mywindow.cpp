@@ -10,7 +10,13 @@ MyWindow::MyWindow(QWidget *parent) :
 
   ,m_waves(0)
 
-  ,m_gameWin(false)
+  ,gameWin(false)
+
+  ,gameEnd(false)
+
+  ,Hp(10)
+
+  ,money(300)
 
 {
 
@@ -111,6 +117,8 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
 
             Tower *tower = new Tower(it->showPos(), ":/4", this);
 
+            money -= tower->towercost;
+
             tower_list.push_back(tower);
 
             update();
@@ -138,7 +146,10 @@ bool MyWindow::canBuyTower() const
 
 {
 
+    if(money>=150)
     return true;
+
+    return false;
 
 }
 
@@ -153,6 +164,15 @@ bool MyWindow::canBuyTower() const
 
 
 void MyWindow::paintEvent(QPaintEvent *){
+
+    if (gameEnd || gameWin)
+    {
+        QString text = gameEnd? "YOU LOST!!!" : "YOU WIN!!!";
+        QPainter painter(this);
+        painter.setPen(QPen(Qt::red));
+        painter.drawText(rect(), Qt::AlignCenter, text);
+        return;
+    }
 
     QPainter painter(this);
 
@@ -326,13 +346,17 @@ void MyWindow::addWayPoints()
 
 }
 
-//void MyWindow::getHpDamage(int damage/* = 1*/)
+void MyWindow::getHpDamage(Enermy * enermy)
 
-//{
+{
 
-    // 暂时空实现，以后这里进行基地费血行为
+     Hp -= enermy->enermydamage;
 
-//    }
+     if(Hp<=0)
+
+         gameEnd = true;
+
+    }
 
 
 
@@ -354,12 +378,12 @@ void MyWindow::removedEnemy(Enermy *enemy)
 
     delete enemy;
 
-    /*if (enermy_list.isEmpty())
+    if (enermy_list.isEmpty())
     {
-        m_gameWin = true;
+        gameWin = true;
             // 游戏胜利转到游戏胜利场景
             // 这里暂时以打印处理
-     }*/
+     }
 
 }
 

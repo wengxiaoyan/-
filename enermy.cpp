@@ -8,6 +8,10 @@ Enermy::Enermy(WayPoint *startWayPoint, MyWindow *game)
 
 {
 
+    enermycost = 100;
+
+    enermydamage = 5;
+
     maxHp = 80;
 
     currentHp = 80;
@@ -126,7 +130,7 @@ void Enermy::move()//移动的同时顺便检查一下血量
 
             // 表示进入基地
 
-            //_game->getHpDamage();
+            _game->getHpDamage(this);
 
             _game->removedEnemy(this);
 
@@ -180,12 +184,14 @@ int Enermy::showCurrentHp(){
     return currentHp;
 }
 
-void Enermy::getdamaged(){
-    currentHp -= 40;
+void Enermy::getdamaged(Tower * tower){
+    currentHp -= tower->showDamage();
 
     if(currentHp<=0){
 
         _game->removedEnemy(this);
+
+        _game->money += enermycost;
 
         return;
     }
