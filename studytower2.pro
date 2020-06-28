@@ -19,6 +19,7 @@ SOURCES += \
     enermy.cpp \
     main.cpp \
     mainwindow.cpp \
+    menu.cpp \
     mybutton.cpp \
     myobject.cpp \
     mywindow.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
     enermy.h \
     mainwindow.h \
+    menu.h \
     mybutton.h \
     myobject.h \
     mywindow.h \

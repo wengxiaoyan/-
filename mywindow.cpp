@@ -3,6 +3,7 @@
 #include <QTimer>
 #include <QPaintEvent>
 #include <QPainter>
+#include "menu.h"
 
 MyWindow::MyWindow(QWidget *parent) :
 
@@ -125,6 +126,13 @@ void MyWindow::mousePressEvent(QMouseEvent *event){
 
             break;
         }
+        /*if(it->containPoint(pressPos) && !it->hasTower())
+        {
+            it->setHasTower();
+            Menu * menu = new Menu(it->showPos(),":/9",this);
+            menu_list.push_back(menu);
+            break;
+        }*/
     }
 }
 
@@ -156,10 +164,18 @@ bool MyWindow::canBuyTower() const
 
 
 
+void MyWindow::drawPlayerGold(QPainter *painter)//画钱
+{
+    painter->setPen(QPen(Qt::red));
+    painter->drawText(QRect(200, 5, 200, 25), QString("GOLD : %1").arg(money));
+}
 
 
-
-
+void MyWindow::drawHP(QPainter *painter)//画hp
+{
+    painter->setPen(QPen(Qt::red));
+    painter->drawText(QRect(400, 5, 100, 25), QString("HP : %1").arg(Hp));
+}
 
 
 
@@ -184,6 +200,10 @@ void MyWindow::paintEvent(QPaintEvent *){
 
     //调用painter的成员函数实现绘图
 
+    drawHP(&painter);
+    drawPlayerGold(&painter);
+
+
     foreach(TowerPosition towerposition, towerposition_list)
 
         towerposition.draw(&painter);
@@ -203,6 +223,10 @@ void MyWindow::paintEvent(QPaintEvent *){
     foreach (Enermy *enemy, enermy_list)
 
         enemy->draw(&painter);
+
+    foreach (Menu * menu, menu_list)
+
+        menu->draw(&painter);
 
 }
 

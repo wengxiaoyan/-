@@ -18,6 +18,8 @@ class Bullet;
 
 class Tower;
 
+class Menu;
+
 class MyWindow : public QMainWindow
 
 {
@@ -52,7 +54,9 @@ public:
 
     void getHpDamage(Enermy * enermy);
 
+    void drawPlayerGold(QPainter *painter);
 
+    void drawHP(QPainter *painter);
 
 
 
@@ -71,6 +75,8 @@ public:
     QList<WayPoint *> waypoint_list;
 
     QList<Enermy *> enermy_list;
+
+    QList<Menu *> menu_list;
 
     int m_waves;
 

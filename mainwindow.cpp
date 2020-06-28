@@ -56,11 +56,11 @@ MainWindow::MainWindow(QWidget *parent)
 
         //接下来开始载入敌人
 
-        int enemyStartInterval[] = { 1400, 3400, 5400};
+        int enemyStartInterval[] = { 1400, 3400, 5400,15000,18000,19000,20000,21000,22000,23000};
 
         WayPoint *startWayPoint = scene->waypoint_list.back(); // 这里是个逆序的，尾部才是其实节点0
 
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 9; i++){
 
             QTimer::singleShot(enemyStartInterval[i],this,[=](){
 
